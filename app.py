@@ -1,11 +1,14 @@
 import requests
 import json
-import os
 from flask import Flask
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/<materiaS>")
+@cross_origin()
 def get(materiaS):
     headers = {'Referer': 'https://registroapps.uniandes.edu.co/oferta_cursos/index.php'}
     materia = materiaS.split('-')[0]
